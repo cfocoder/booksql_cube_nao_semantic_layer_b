@@ -3,21 +3,26 @@
 ## Required Nao project
 
 ```text
-Project: tesis-condition-b
+Project: booksql-condition-b
 Repository: https://github.com/cfocoder/booksql_cube_nao_semantic_layer_b.git
 Branch: main
 ```
 
-## Required runtime variables
+## Required MCP/environment
 
 ```text
-DIRECT_PG_HOST
-DIRECT_PG_PORT=5432
-DIRECT_PG_DATABASE
-DIRECT_PG_USER
-DIRECT_PG_PASSWORD
-OPENAI_API_KEY / OPENAI_BASE_URL
-OPENROUTER_API_KEY / OPENROUTER_BASE_URL
+MCP server: booksql_sqlite
+Tools: sqlite_schema, sqlite_query
+Project variable: BOOKSQL_SQLITE_MCP_URL
+Example value: http://<MACMINI_TAILSCALE_IP>:8788/mcp
 ```
 
-The PostgreSQL user must be read-only and limited to the `retail` schema. Do not configure `CUBE_API_URL`, `CUBE_API_SECRET`, or a Cube MCP in this project. The shared `decimal_calculator.calculate` MCP is allowed only for exact arithmetic over values obtained via `direct_postgres`; it has no data access.
+Set `BOOKSQL_SQLITE_MCP_URL` in the B project's Nao environment settings to the current MacMini Tailscale endpoint. Do not put the address or secrets in source if the endpoint changes; the SQLite MCP itself has no database credential and is restricted to the tailnet interface plus a read-only file mount.
+
+## Boundary
+
+- Direct physical SQLite access is allowed only through `booksql_sqlite`.
+- Cube/`cube_semantic` is absent from B.
+- `decimal_calculator` is arithmetic-only and is not a data route.
+- SQL must be SQLite `SELECT`/`WITH`; the MCP rejects writes and multiple statements and caps rows.
+- No direct PostgreSQL configuration or `DIRECT_PG_*` variables are used.
