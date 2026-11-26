@@ -1,1 +1,18 @@
-# booksql_cube_nao_semantic_layer_b
+# Scenario B — Direct PostgreSQL with technical schema context
+
+This repository is the Nao Multi-project context for formal scenario **B** to test the BookSQL benchmark.
+
+## Boundary
+
+- One read-only PostgreSQL connection named `direct_postgres`.
+- Nao may synchronize table, column, schema, and preview metadata from `retail`.
+- No Cube MCP or Cube semantic contract.
+- The shared `decimal_calculator` MCP is available only for exact arithmetic; it does not provide data.
+- No Contoso business skill or business-policy rule.
+- The agent may use the physical schema and generate read-only SQL.
+
+## Project mapping
+
+- Nao project: `tesis-condition-b`
+- Repository: `cfocoder/cube_nao_semantic_layer_b`
+- Expected route: `direct_postgres`
