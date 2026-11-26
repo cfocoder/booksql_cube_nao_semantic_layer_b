@@ -1,5 +1,12 @@
 {
   "mcpServers": {
+    "booksql_sqlite": {
+      "transport": "streamable-http",
+      "url": "${BOOKSQL_SQLITE_MCP_URL}",
+      "disabled": false,
+      "autoApprove": [],
+      "disabledTools": []
+    },
     "decimal_calculator": {
       "transport": "streamable-http",
       "url": "http://calculator-mcp-private:9000/mcp",
