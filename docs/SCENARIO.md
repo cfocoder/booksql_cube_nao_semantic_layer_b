@@ -25,4 +25,4 @@ Set `BOOKSQL_SQLITE_MCP_URL` in the B project's Nao environment settings to the 
 - Cube/`cube_semantic` is absent from B.
 - `decimal_calculator` is arithmetic-only and is not a data route.
 - SQL must be SQLite `SELECT`/`WITH`; the MCP rejects writes and multiple statements and caps rows.
-- No direct PostgreSQL configuration or `DIRECT_PG_*` variables are used.
+- The Nao project uses only `BOOKSQL_SQLITE_MCP_URL`; database access is through `booksql_sqlite`, not a direct connection.

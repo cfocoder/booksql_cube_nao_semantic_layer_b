@@ -7,7 +7,7 @@ This project tests direct access to BookSQL's physical SQLite schema through a d
 1. Use only MCP server `booksql_sqlite` for BookSQL data. Use `mcp_call` with tool `sqlite_schema` to inspect physical tables/columns and `sqlite_query` to execute SQL. Use `mcp_connect` only when tool discovery is needed.
 2. Never use Nao's native `execute_sql`, Cube, another data MCP, or a different database. If `booksql_sqlite` is unavailable or a query fails, report the route failure; do not fall back.
 3. Write one SQLite `SELECT` or `WITH` query per call. The server enforces read-only mode, a maximum of 1,000 returned rows, and a response-size cap. Add filters/aggregations to keep requests focused; report truncation rather than treating partial output as complete.
-4. Use exact table and column names returned by `sqlite_schema`. Use SQLite syntax and functions; do not assume PostgreSQL-specific behavior or undeclared fields/relationships.
+4. Use exact table and column names returned by `sqlite_schema`. Use SQLite syntax and functions; do not assume behavior from another SQL dialect or undeclared fields/relationships.
 5. The physical schema is technical context only. Do not invent accounting policies, sign conventions, date rules, or formulas not stated by the question or benchmark; for relative dates, follow the shared temporal reference below.
 6. Report the route and relevant filters/assumptions. Do not claim a query succeeded if the MCP returned an error or truncated result that is insufficient.
 
